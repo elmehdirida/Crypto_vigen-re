@@ -1,0 +1,47 @@
+<div class="center">
+  <h1 class="space">Crypter/Decrypter De Vigenere</h1>
+</div>
+<div class="center">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="space">
+    <mat-label>Entrer le mot a crypter</mat-label>
+    <input matInput  formControlName="cryptoName">
+    <mat-error *ngIf="form.controls['cryptoName'].hasError('required')">
+      Le mot est obligatoire
+    </mat-error>
+  </mat-form-field>
+  <button class="space" mat-raised-button color="primary">Save To DataBase</button>
+</form>
+</div>
+<!-- add switch to choose between crypt and decrypt -->
+<div class="center">
+  <mat-slide-toggle (ngModelChange)="updateShowPasswords()" class="space" [(ngModel)]="checked">{{checked ? "Switch To Crypt Mode" : "Switch To Decrypt Mode"}}</mat-slide-toggle>
+</div>
+<div class="center">
+  <table mat-table [dataSource]="passwords">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let password">{{ password.id }}</td>
+    </ng-container>
+
+    <!-- Password Column -->
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef>Password</th>
+      <td mat-cell *matCellDef="let password">{{ password.password }}</td>
+    </ng-container>
+
+    <!-- Delete Button Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Delete Password</th>
+      <td mat-cell *matCellDef="let password">
+        <button mat-raised-button color="warn" (click)="deletePassword(password.id)">delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+

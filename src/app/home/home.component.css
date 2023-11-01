@@ -1,0 +1,24 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.space{
+  margin: 20px;
+}
+.center {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+button {
+  color: red; /* Adjust the color as needed */
+}
+
+button:hover {
+  color: darkred; /* Adjust the color as needed */
+}
